@@ -1,6 +1,4 @@
-# Allow all crawlers access to everything
 User-agent: *
-allow:
+Allow: /
 
-# Sitemap location
 Sitemap: https://fleepzonsoftech.online/sitemap.xml
