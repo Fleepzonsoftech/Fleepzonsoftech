@@ -88,7 +88,7 @@ async function handleInvoice(mode = "download") {
     doc.text("Fleepzonsoftech",105,45,{align:"center"});
     doc.setFont("helvetica","normal"); doc.setFontSize(10);
     doc.text("Baleshwar, Odisha",105,52,{align:"center"});
-    doc.text("Email: fleepzon@info.com | Website: fleepzonsoftech.online",105,58,{align:"center"});
+    doc.text("Email: help@fleepzonsoftech.online | Website: https://fleepzonsoftech.online/",105,58,{align:"center"});
 
     doc.setFont("helvetica","bold"); doc.setFontSize(16);
     doc.text("Payment Invoice",105,72,{align:"center"});
@@ -120,7 +120,7 @@ async function handleInvoice(mode = "download") {
     doc.setFont("helvetica","italic"); doc.setFontSize(12);
     doc.text("Thank you for your payment!",105,190,{align:"center"});
     doc.setFont("helvetica","normal"); doc.setFontSize(10);
-    doc.text("© 2025 Fleepzonsoftech. All Rights Reserved.",105,200,{align:"center"});
+    doc.text("© 2025 Fleepzonsoftech. All Rights Reserved,This is computer generated invoice no signature required.",105,200,{align:"center"});
 
     if(mode==="download") doc.save("Invoice_"+paymentId+".pdf");
     else if(mode==="share"){
@@ -140,3 +140,4 @@ async function handleInvoice(mode = "download") {
 
 </body>
 </html>
+
