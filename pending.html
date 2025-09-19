@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Pending - Fleepzonsoftech</title>
+<link rel="stylesheet" href="https://fleepzonsoftech.online/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<style>
+body { font-family: 'Roboto', sans-serif; line-height: 1.6; margin:0; padding:0; background:#f9f9f9; color:#333;}
+header, footer { background:#007bff; color:#fff; padding:15px 0; text-align:center;}
+header a, footer a { color:#ffdd57; text-decoration:none; font-weight:bold;}
+.container { max-width:900px; margin:20px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center;}
+h2 { color:#ffc107; } /* yellow for pending */
+p { margin-bottom:15px; }
+.pay-button { padding:10px 20px; border:none; border-radius:5px; color:#fff; cursor:pointer; font-size:16px; transition:0.3s; margin:5px;}
+.home-btn { background-color:#007bff; }
+.home-btn:hover { background-color:#0056b3; }
+.retry-btn { background-color:#ffc107; color:#333; }
+.retry-btn:hover { opacity:0.85; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://fleepzonsoftech.online/index.html">
+    <img src="https://fleepzonsoftech.online/images/logo.png" alt="Fleepzonsoftech" style="height:50px; vertical-align:middle;">
+    Fleepzonsoftech
+  </a>
+</header>
+
+<div class="container">
+  <h2>⏳ Payment Pending</h2>
+  <p>Your payment is currently being processed. Please wait a moment or try again.</p>
+  <p id="paymentId"></p>
+  <p id="paymentDate"></p>
+  <p id="paymentAmount"></p>
+
+  <button class="pay-button home-btn" onclick="window.location.href='payment.html'">
+    <i class="fas fa-home"></i> Back to Payment
+  </button>
+  <button class="pay-button retry-btn" onclick="retryPayment()">
+    <i class="fas fa-redo"></i> Retry Payment
+  </button>
+</div>
+
+<footer>
+  <p>&copy; 2025 Fleepzonsoftech. All Rights Reserved. | 
+    <a href="https://fleepzonsoftech.online"><i class="fas fa-home"></i> Home</a>
+  </p>
+</footer>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+let paymentId = urlParams.get("payment_id");
+let paymentAmount = urlParams.get("amount");
+
+if(!paymentId) paymentId = "PAY" + Math.floor(Math.random()*1000000000);
+if(!paymentAmount) paymentAmount = "₹500.00";
+
+document.getElementById("paymentId").innerText = "Payment ID: " + paymentId;
+document.getElementById("paymentAmount").innerText = "Amount: " + paymentAmount;
+
+const now = new Date();
+const options = { timeZone: "Asia/Kolkata", year:"numeric", month:"long", day:"numeric", hour:"2-digit", minute:"2-digit", second:"2-digit" };
+const formattedDateTime = new Intl.DateTimeFormat("en-IN", options).format(now);
+document.getElementById("paymentDate").innerText = "Date & Time: " + formattedDateTime;
+
+function retryPayment() {
+  alert("Redirecting to payment page...");
+  window.location.href = 'payment.html';
+}
+</script>
+
+</body>
+</html>
