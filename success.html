@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Success - Fleepzonsoftech</title>
+<link rel="stylesheet" href="https://fleepzonsoftech.online/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+body { font-family: 'Roboto', sans-serif; line-height: 1.6; margin:0; padding:0; background:#f9f9f9; color:#333;}
+header, footer { background:#007bff; color:#fff; padding:15px 0; text-align:center;}
+header a, footer a { color:#ffdd57; text-decoration:none; font-weight:bold;}
+.container { max-width:900px; margin:20px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center;}
+h2 { color:#28a745; }
+p { margin-bottom:15px; }
+.pay-button { padding:10px 20px; border:none; border-radius:5px; color:#fff; cursor:pointer; font-size:16px; transition:0.3s; margin:5px;}
+.pay-button:hover { opacity:0.85; }
+.invoice-btn { background-color:#28a745; }
+.invoice-btn:hover { background-color:#1e7e34; }
+.share-btn { background-color:#25d366; }
+.share-btn:hover { background-color:#1ebe5b; }
+.home-btn { background-color:#007bff; }
+.home-btn:hover { background-color:#0056b3; }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://fleepzonsoftech.online/index.html">
+    <img src="https://fleepzonsoftech.online/images/logo.png" alt="Fleepzonsoftech" style="height:50px; vertical-align:middle;">
+    Fleepzonsoftech
+  </a>
+</header>
+
+<div class="container">
+  <h2>✅ Payment Successful</h2>
+  <p>Thank you for your payment!</p>
+  <p id="paymentId"></p>
+  <p id="paymentDate"></p>
+  <p id="paymentAmount"></p>
+
+  <button class="pay-button home-btn" onclick="window.location.href='payment.html'">
+    <i class="fas fa-home"></i> Back to Home
+  </button>
+  <button class="pay-button invoice-btn" onclick="handleInvoice('download')">
+    <i class="fas fa-file-pdf"></i> Download Invoice
+  </button>
+  <button class="pay-button share-btn" onclick="handleInvoice('share')">
+    <i class="fab fa-whatsapp"></i> Share Invoice
+  </button>
+</div>
+
+<footer>
+  <p>&copy; 2025 Fleepzonsoftech. All Rights Reserved. | 
+    <a href="https://fleepzonsoftech.online"><i class="fas fa-home"></i> Home</a>
+  </p>
+</footer>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+let paymentId = urlParams.get("payment_id");
+let paymentAmount = urlParams.get("amount");
+
+if(!paymentId) paymentId = "PAY" + Math.floor(Math.random()*1000000000);
+if(!paymentAmount) paymentAmount = "₹500.00";
+
+document.getElementById("paymentId").innerText = "Payment ID: " + paymentId;
+document.getElementById("paymentAmount").innerText = "Amount Paid: " + paymentAmount;
+
+const now = new Date();
+const options = { timeZone: "Asia/Kolkata", year:"numeric", month:"long", day:"numeric", hour:"2-digit", minute:"2-digit", second:"2-digit" };
+const formattedDateTime = new Intl.DateTimeFormat("en-IN", options).format(now);
+document.getElementById("paymentDate").innerText = "Date & Time: " + formattedDateTime;
+
+// ===== Unified Invoice Function =====
+async function handleInvoice(mode = "download") {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const logoUrl = "https://fleepzonsoftech.online/images/icon.png";
+  const img = new Image();
+  img.src = logoUrl;
+
+  img.onload = async function() {
+    doc.addImage(img,"PNG",75,10,60,25);
+    doc.setFont("helvetica","bold"); doc.setFontSize(14);
+    doc.text("Fleepzonsoftech",105,45,{align:"center"});
+    doc.setFont("helvetica","normal"); doc.setFontSize(10);
+    doc.text("Baleshwar, Odisha",105,52,{align:"center"});
+    doc.text("Email: fleepzon@info.com | Website: fleepzonsoftech.online",105,58,{align:"center"});
+
+    doc.setFont("helvetica","bold"); doc.setFontSize(16);
+    doc.text("Payment Invoice",105,72,{align:"center"});
+
+    const invoiceNo = "INV-"+new Date().getFullYear()+"-"+Math.floor(Math.random()*10000);
+    doc.setFont("helvetica","normal"); doc.setFontSize(11);
+    doc.text("Invoice No: "+invoiceNo,20,85);
+    doc.text("Invoice Date: "+formattedDateTime,20,92);
+
+    doc.setFont("helvetica","bold"); doc.setFontSize(12);
+    doc.setFillColor(230,230,230); doc.rect(15,105,180,10,"F");
+    doc.text("Field",25,112); doc.text("Details",105,112);
+
+    doc.setFont("helvetica","normal");
+    doc.rect(15,105,180,70);
+    doc.line(15,115,195,115); doc.line(15,125,195,125);
+    doc.line(15,135,195,135); doc.line(15,145,195,145);
+    doc.line(15,155,195,155); doc.line(15,165,195,165);
+    doc.line(100,105,100,175);
+
+    doc.text("Payment ID",25,122); doc.text(paymentId,105,122);
+    doc.text("Amount Paid",25,132); doc.text(paymentAmount,105,132);
+    doc.text("Date & Time",25,142); doc.text(formattedDateTime,105,142);
+
+    doc.setFillColor(240,240,240); doc.rect(15,165,180,10,"F");
+    doc.setFont("helvetica","bold");
+    doc.text("TOTAL",25,172); doc.text(paymentAmount,105,172);
+
+    doc.setFont("helvetica","italic"); doc.setFontSize(12);
+    doc.text("Thank you for your payment!",105,190,{align:"center"});
+    doc.setFont("helvetica","normal"); doc.setFontSize(10);
+    doc.text("© 2025 Fleepzonsoftech. All Rights Reserved.",105,200,{align:"center"});
+
+    if(mode==="download") doc.save("Invoice_"+paymentId+".pdf");
+    else if(mode==="share"){
+      const pdfBlob = doc.output("blob");
+      const file = new File([pdfBlob],"Invoice_"+paymentId+".pdf",{type:"application/pdf"});
+      if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+        try{ await navigator.share({title:"Payment Invoice", text:"Here is your invoice from Fleepzonsoftech", files:[file]}); }
+        catch(err){ console.log("Share canceled", err); }
+      } else {
+        alert("Sharing not supported. Invoice will download instead.");
+        doc.save("Invoice_"+paymentId+".pdf");
+      }
+    }
+  };
+}
+</script>
+
+</body>
+</html>
