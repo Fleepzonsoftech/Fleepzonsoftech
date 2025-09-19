@@ -1,174 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fleepzonsoftech Payment</title>
-  <link rel="stylesheet" href="https://fleepzonsoftech.online/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    header, footer {
-      background-color: #007bff;
-      color: #fff;
-      padding: 15px 0;
-      text-align: center;
-    }
-    header a, footer a {
-      color: #ffdd57;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    h1, h2 {
-      color: #1a1a1a;
-    }
-    p {
-      margin-bottom: 15px;
-    }
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .pay-box {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .pay-options {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .pay-button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
-    }
-    .pay-button:hover {
-      background-color: #0056b3;
-    }
-    .pay-button.selected {
-      background-color: #28a745; /* Active/selected button color */
-    }
-    #customAmount {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 200px;
-      text-align: center;
-      margin: 0 auto;
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fleepzonsoftech Payment</title>
+<link rel="stylesheet" href="https://fleepzonsoftech.online/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<style>
+body { font-family:'Roboto',sans-serif; line-height:1.6; margin:0; padding:0; background:#f9f9f9; color:#333; }
+header, footer { background:#007bff; color:#fff; padding:15px 0; text-align:center; }
+header a, footer a { color:#ffdd57; text-decoration:none; font-weight:bold; }
+.container { max-width:900px; margin:20px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center; }
+.pay-box { display:flex; flex-direction:column; gap:15px; margin-top:20px; }
+.pay-options { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+.pay-button { padding:10px 20px; background:#007bff; border:none; border-radius:5px; color:#fff; cursor:pointer; font-size:16px; transition:0.3s; }
+.pay-button:hover { background:#0056b3; }
+.pay-button.selected { background:#28a745; }
+#customAmount { padding:10px; border-radius:5px; border:1px solid #ccc; width:200px; text-align:center; margin:0 auto; display:block; }
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <a href="https://fleepzonsoftech.online/index.html">
-      <img src="https://fleepzonsoftech.online/images/logo.png" alt="Fleepzonsoftech" style="height:50px; vertical-align:middle;">
-      Fleepzonsoftech
-    </a>
-  </header>
+<header>
+<a href="https://fleepzonsoftech.online/index.html">
+<img src="https://fleepzonsoftech.online/images/logo.png" alt="Fleepzonsoftech" style="height:50px; vertical-align:middle;"> Fleepzonsoftech
+</a>
+</header>
 
-  <!-- Payment Content -->
-  <div class="container">
-    <h1>Choose Your Payment</h1>
-    <p>Select a preset amount or enter a custom amount to pay.</p>
+<div class="container">
+<h1>Choose Your Payment</h1>
+<p>Select a preset amount or enter a custom amount to pay.</p>
 
-    <div class="pay-box">
-      <div class="pay-options">
-        <button class="pay-button" data-amount="500">₹500</button>
-        <button class="pay-button" data-amount="1000">₹1000</button>
-        <button class="pay-button" data-amount="2000">₹2000</button>
-      </div>
-      <input type="number" id="customAmount" placeholder="Enter Custom Amount (₹)">
-      <button id="rzp-button" class="pay-button">Pay Now</button>
-    </div>
+<div class="pay-box">
+  <div class="pay-options">
+    <button class="pay-button" data-amount="500">₹500</button>
+    <button class="pay-button" data-amount="1000">₹1000</button>
+    <button class="pay-button" data-amount="2000">₹2000</button>
   </div>
+  <input type="number" id="customAmount" placeholder="Enter Custom Amount (₹)">
+  <button id="rzp-button" class="pay-button">Pay Now</button>
+</div>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Fleepzonsoftech. All Rights Reserved. | <a href="https://fleepzonsoftech.online">Home</a></p>
-  </footer>
+<footer>
+<p>&copy; 2025 Fleepzonsoftech. All Rights Reserved. | <a href="https://fleepzonsoftech.online">Home</a></p>
+</footer>
 
-  <!-- Razorpay Checkout -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-  <script>
-    let selectedAmount = 0;
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+let selectedAmount = 0;
 
-    const payButtons = document.querySelectorAll(".pay-button[data-amount]");
-    const customAmountInput = document.getElementById("customAmount");
-    const rzpButton = document.getElementById("rzp-button");
+const payButtons = document.querySelectorAll(".pay-button[data-amount]");
+const customAmountInput = document.getElementById("customAmount");
+const rzpButton = document.getElementById("rzp-button");
 
-    // Handle preset amount buttons
-    payButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        // Remove "selected" from all buttons
-        payButtons.forEach(btn => btn.classList.remove("selected"));
-        // Add "selected" to clicked button
-        button.classList.add("selected");
-        selectedAmount = parseInt(button.getAttribute("data-amount"));
-        customAmountInput.value = "";
-      });
-    });
+// Handle preset amount buttons
+payButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    payButtons.forEach(btn => btn.classList.remove("selected"));
+    button.classList.add("selected");
+    selectedAmount = parseInt(button.getAttribute("data-amount"));
+    customAmountInput.value = "";
+  });
+});
 
-    // Handle custom amount input
-    customAmountInput.addEventListener("input", () => {
-      payButtons.forEach(btn => btn.classList.remove("selected"));
-      selectedAmount = parseInt(customAmountInput.value) || 0;
-    });
+// Handle custom amount input
+customAmountInput.addEventListener("input", () => {
+  payButtons.forEach(btn => btn.classList.remove("selected"));
+  selectedAmount = parseInt(customAmountInput.value) || 0;
+});
 
-    // Handle Pay Now
-    rzpButton.addEventListener("click", () => {
-      if (selectedAmount <= 0) {
-        alert("Please select or enter a valid amount!");
-        return;
-      }
+// Pay Now
+rzpButton.addEventListener("click", () => {
+  if(selectedAmount <= 0) {
+    alert("Please select or enter a valid amount!");
+    return;
+  }
 
-      const options = {
-        key: "YOUR_RAZORPAY_KEY_ID", // Replace with your key
-        amount: selectedAmount * 100, // in paise
-        currency: "INR",
-        name: "Fleepzonsoftech",
-        description: "Payment for services",
-        handler: function(response){
-          alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
-        },
-        theme: { color: "#007bff" }
-      };
+  const options = {
+    key: "rzp_live_RJS0", // ✅ Your live Razorpay Key
+    amount: selectedAmount * 100, // Amount in paise
+    currency: "INR",
+    name: "Fleepzonsoftech",
+    description: "Payment for Services",
+    handler: function(response){
+      // Redirect to success page with payment ID & amount
+      window.location.href = `payment-success.html?payment_id=${response.razorpay_payment_id}&amount=${selectedAmount}`;
+    },
+    theme: { color:"#007bff" }
+  };
 
-      const rzp = new Razorpay(options);
-      rzp.open();
-    });
-  </script>
+  const rzp = new Razorpay(options);
+  rzp.open();
+});
+</script>
 
 </body>
 </html>
+
+
