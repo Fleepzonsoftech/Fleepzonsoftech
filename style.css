@@ -229,3 +229,60 @@ footer {
   0% { opacity: 0; transform: translateY(50px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+/* Sidebar (mobile menu) */
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  right: -250px; /* hidden off-screen */
+  background-color: #111;
+  overflow-x: hidden;
+  transition: right 0.3s ease;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  right: 0; /* slides in */
+}
+
+.sidebar a {
+  padding: 12px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #f1f1f1;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background: #575757;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* Hamburger toggle */
+.menu-toggle {
+  font-size: 26px;
+  cursor: pointer;
+  display: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    display: none; /* hide desktop nav on mobile */
+  }
+  .menu-toggle {
+    display: block; /* show hamburger */
+  }
+}
+
