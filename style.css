@@ -198,7 +198,7 @@ footer {
   position: fixed;
   top: 0;
   right: -250px;
-  background: #111;
+  background: #87CEFA;
   padding-top: 60px;
   transition: right 0.3s;
   z-index: 1000;
@@ -237,3 +237,4 @@ footer {
   .service-cards { flex-direction: column; }
   .portfolio-grid { grid-template-columns: 1fr; }
 }
+
