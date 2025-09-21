@@ -88,7 +88,7 @@ header nav ul li a:hover {
 .hero {
   background: linear-gradient(rgba(0,123,255,0.6), rgba(0,123,255,0.6)), url('images/hero-bg.jpg') center/cover no-repeat;
   text-align: center;
-  padding: 117px 0;
+  padding: 105px 0;
   color: white;
 }
 
@@ -237,5 +237,6 @@ footer {
   .service-cards { flex-direction: column; }
   .portfolio-grid { grid-template-columns: 1fr; }
 }
+
 
 
