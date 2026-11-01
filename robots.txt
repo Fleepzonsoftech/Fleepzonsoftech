@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fleepzonsoftech.online/sitemap.xml
+Sitemap: https://fleepzonsoftech.in/sitemap.xml
